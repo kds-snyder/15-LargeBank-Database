@@ -14,14 +14,17 @@ SELECT * from Customer;
  --Show all Transactions for Account #1001 that would be included 
  -- in the statement beginning 2013-08-01
  SELECT * FROM [Transaction] WHERE
- AccountId=(SELECT AccountId from Account WHERE AccountNumber='1001') AND
- TransactionDate BETWEEN 
+ AccountId=(SELECT AccountId from Account WHERE AccountNumber='1001') 
+ AND
+ (TransactionDate >= 
  (SELECT StartDate FROM Statement 
  WHERE Statement.AccountId=(SELECT AccountId from Account WHERE AccountNumber='1001') 
- AND StartDate='2013-08-01') AND 
+ AND StartDate='2013-08-01'))
+ AND 
+ (TransactionDate <=
  (SELECT EndDate FROM Statement 
  WHERE Statement.AccountId=(SELECT AccountId from Account WHERE AccountNumber='1001') 
- AND StartDate='2013-08-01')
+ AND StartDate='2013-08-01'))
 
 
  
