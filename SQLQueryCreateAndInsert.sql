@@ -24,7 +24,7 @@ CREATE TABLE Account
 	CustomerId INT NOT NULL,
 	CreatedDate DATETIME NOT NULL,
 	AccountNumber VARCHAR(50) NOT NULL,
-	Balance MONEY NOT NULL,
+	Balance DECIMAL NOT NULL,
 	FOREIGN KEY (CustomerId) REFERENCES Customer (CustomerId)
 )
 CREATE TABLE [Transaction]
@@ -32,7 +32,7 @@ CREATE TABLE [Transaction]
 	TransactionId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	AccountId INT NOT NULL,
 	TransactionDate DATETIME NOT NULL,
-	Amount MONEY NOT NULL,
+	Amount DECIMAL NOT NULL,
 	FOREIGN KEY (AccountId) REFERENCES Account (AccountId)
 )
 CREATE TABLE [Statement]
